@@ -20,9 +20,9 @@ public class Subscriber
         RegistrationDate = registrationDate;
     }
 
-    public Subscriber(int id)
+    public Subscriber()
     {
-        Id = id;
+        Id = 0;
         Name = "None";
         Phone = "+7(000) 111-22-33";
         IsPremium = false;
