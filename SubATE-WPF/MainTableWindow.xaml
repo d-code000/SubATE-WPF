@@ -19,9 +19,19 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Add row" Click="AddRow_OnClick"/>
                 <MenuItem Header="Edit row" Click="EditRow_OnClick"/>
+                <MenuItem Header="Delete row" Click="DeleteRow_OnClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="About"/>
         </Menu>
-        <DataGrid Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="True" ItemsSource="{Binding SubscribersTable}" IsReadOnly="True" />
+        <DataGrid Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="True" 
+                  ItemsSource="{Binding SubscribersTable}" IsReadOnly="True">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add Row" Click="AddRow_OnClick"/>
+                    <MenuItem Header="Edit Row" Click="EditRow_OnClick"/>
+                    <MenuItem Header="Delete Row" Click="DeleteRow_OnClick"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </Window>

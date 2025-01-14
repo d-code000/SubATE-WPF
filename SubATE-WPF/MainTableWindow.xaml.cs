@@ -68,8 +68,6 @@ public partial class MainTableWindow : Window
                     };
                     _viewModel.SubscribersTable.Add(subscriber);
                 }
-
-                MessageBox.Show("File opened successfully");
             }
             catch (Exception ex)
             {
@@ -107,8 +105,6 @@ public partial class MainTableWindow : Window
                         writer.WriteLine(line);
                     }
                 }
-
-                MessageBox.Show("File saved successfully");
             }
             catch (Exception ex)
             {
@@ -132,4 +128,15 @@ public partial class MainTableWindow : Window
         }
     }
 
+    private void DeleteRow_OnClick(object sender, RoutedEventArgs e)
+    {
+        var subscriber = (Subscriber) SubscribersDataGrid.SelectedItem;
+        if (subscriber == null)
+        {
+            MessageBox.Show("Please select a row to edit.");
+            return;
+        }
+
+        _viewModel.SubscribersTable.Remove(subscriber);
+    }
 }

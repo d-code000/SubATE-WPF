@@ -67,14 +67,14 @@ public sealed class SubscriberViewModel(Subscriber subscriber) : INotifyProperty
         }
     }
     
-    public DateOnly RegistrationDate
+    public DateTime RegistrationDate
     {
-        get => subscriber.RegistrationDate;
+        get => subscriber.RegistrationDate.ToDateTime(new TimeOnly());
         set
         {
-            if (value <= DateOnly.FromDateTime(DateTime.Now))
+            if (value <= DateTime.Now)
             {
-                subscriber.RegistrationDate = value;
+                subscriber.RegistrationDate = DateOnly.FromDateTime(value);
                 OnPropertyChanged(nameof(RegistrationDate));
             }
         }
