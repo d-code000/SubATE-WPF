@@ -1,18 +1,11 @@
-﻿<Window x:Class="SubATE_WPF.MainWindow"
+﻿<Window x:Class="SubATE_WPF.MainTableWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SubATE_WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <local:SubscriberViewModel x:Key="SubscriberViewModel" />
-    </Window.Resources>
     <Grid>
-        <Grid.DataContext>
-            <Binding Source="{StaticResource SubscriberViewModel}"/>
-        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -24,11 +17,11 @@
                 <MenuItem Header="Exit"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Add row"/>
-                <MenuItem Header="Edit row"/>
+                <MenuItem Header="Add row" Click="AddRow_OnClick"/>
+                <MenuItem Header="Edit row" Click="EditRow_OnClick"/>
             </MenuItem>
             <MenuItem Header="About"/>
         </Menu>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="True" ItemsSource="{Binding SubscribersTable}" IsReadOnly="True" />
+        <DataGrid Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="True" ItemsSource="{Binding SubscribersTable}" IsReadOnly="True" />
     </Grid>
 </Window>

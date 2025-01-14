@@ -22,11 +22,11 @@ public class Subscriber
 
     public Subscriber()
     {
-        Id = 0;
+        Id = 1;
         Name = "None";
-        Phone = "+7(000) 111-22-33";
+        Phone = "+7(000)111-22-33";
         IsPremium = false;
-        Type = SubscriberType.LegalPerson;
+        Type = SubscriberType.Legal;
         RegistrationDate = DateOnly.FromDateTime(DateTime.Today);
     }
 }
