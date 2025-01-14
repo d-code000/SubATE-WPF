@@ -8,11 +8,6 @@ public class SubscriberTableViewModel
     
     public SubscriberTableViewModel()
     {
-        SubscribersTable = new ObservableCollection<Subscriber>
-        {
-            new Subscriber(),
-            new Subscriber(),
-            new Subscriber()
-        };
+        SubscribersTable = new ObservableCollection<Subscriber>();
     }
 }

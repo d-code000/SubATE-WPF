@@ -12,9 +12,9 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Open" Click="Open_OnClick"/>
+                <MenuItem Header="Save" Click="Save_OnClick"/>
+                <MenuItem Header="Exit" Click="Exit_OnClick"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Add row" Click="AddRow_OnClick"/>
