@@ -6,11 +6,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Click="Open_OnClick"/>
                 <MenuItem Header="Save" Click="Save_OnClick"/>
@@ -19,11 +24,11 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Add row" Click="AddRow_OnClick"/>
                 <MenuItem Header="Edit row" Click="EditRow_OnClick"/>
-                <MenuItem Header="Delete row" Click="DeleteRow_OnClick"></MenuItem>
+                <MenuItem Header="Delete row" Click="DeleteRow_OnClick"/>
             </MenuItem>
             <MenuItem Header="About" Click="About_OnClick"/>
         </Menu>
-        <DataGrid Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="True" 
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Name="SubscribersDataGrid" AutoGenerateColumns="True" 
                   ItemsSource="{Binding SubscribersTable}" IsReadOnly="True">
             <DataGrid.ContextMenu>
                 <ContextMenu>
@@ -33,5 +38,7 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
+        <Button Grid.Row="2" Grid.Column="0" Content="Up" Click="UpTable_OnClick"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Down" Click="DownTable_OnClick"/>
     </Grid>
 </Window>
