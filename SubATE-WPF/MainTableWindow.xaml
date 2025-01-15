@@ -29,7 +29,7 @@
             <MenuItem Header="About" Click="About_OnClick"/>
         </Menu>
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Name="SubscribersDataGrid" AutoGenerateColumns="True" 
-                  ItemsSource="{Binding SubscribersTable}" IsReadOnly="True">
+                  ItemsSource="{Binding SubscribersTable}" IsReadOnly="True" FontSize="24">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Add Row" Click="AddRow_OnClick"/>
