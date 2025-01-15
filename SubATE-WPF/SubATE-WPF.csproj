@@ -7,10 +7,18 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>assets\two-color.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
       <Folder Include="data\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="assets\two-color.png" />
+      <Resource Include="assets\two-color.png" />
+      <None Remove="assets\light.png" />
+      <Resource Include="assets\light.png" />
     </ItemGroup>
 
 </Project>

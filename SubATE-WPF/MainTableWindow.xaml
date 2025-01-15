@@ -21,7 +21,7 @@
                 <MenuItem Header="Edit row" Click="EditRow_OnClick"/>
                 <MenuItem Header="Delete row" Click="DeleteRow_OnClick"></MenuItem>
             </MenuItem>
-            <MenuItem Header="About"/>
+            <MenuItem Header="About" Click="About_OnClick"/>
         </Menu>
         <DataGrid Name="SubscribersDataGrid" Grid.Row="1" AutoGenerateColumns="True" 
                   ItemsSource="{Binding SubscribersTable}" IsReadOnly="True">

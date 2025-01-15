@@ -139,4 +139,10 @@ public partial class MainTableWindow : Window
 
         _viewModel.SubscribersTable.Remove(subscriber);
     }
+
+    private void About_OnClick(object sender, RoutedEventArgs e)
+    {
+        var aboutWindow = new InfoWindow();
+        aboutWindow.ShowDialog();
+    }
 }
