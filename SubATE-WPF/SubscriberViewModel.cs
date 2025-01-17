@@ -25,10 +25,13 @@ public sealed class SubscriberViewModel(Subscriber subscriber) : INotifyProperty
         get => subscriber.Name;
         set
         {
-            if (value.All(x => char.IsLetter(x) || char.IsWhiteSpace(x)))
+            if (value.Length > 0 && value.Length <= 50)
             {
-                subscriber.Name = value;
-                OnPropertyChanged(nameof(Name));
+                if (value.All(x => char.IsLetter(x) || char.IsWhiteSpace(x)))
+                {
+                    subscriber.Name = value;
+                    OnPropertyChanged(nameof(Name));
+                }
             }
         }
     }
