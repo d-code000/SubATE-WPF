@@ -62,9 +62,17 @@ public partial class MainTableWindow
                 _fileLinesCount = File.ReadLines(_currentFilePath).Count();
                 LoadSubscribers();
             }
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show($"Error opening file: {ex.Message}");
+                MessageBox.Show($"File not found: {ex.Message}");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($"Access error: {ex.Message}");
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"I/O error: {ex.Message}");
             }
         }
     }
@@ -138,9 +146,17 @@ public partial class MainTableWindow
             {
                 SaveSubscribersToFile(saveFileDialog.FileName);
             }
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show($"Error saving file: {ex.Message}");
+                MessageBox.Show($"File not found: {ex.Message}");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($"Access error: {ex.Message}");
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"I/O error: {ex.Message}");
             }
         }
     }
