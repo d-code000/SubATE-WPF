@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Data;
+using System.IO;
 using System.Text;
 using System.Windows;
 
@@ -115,11 +116,9 @@ public partial class MainTableWindow
     private Subscriber? ParseSubscriber(string line)
     {
         var values = line.Split(',');
-
-        if (values.Length != 6) return null;
-
         try
         {
+            if (values.Length != 6) throw new DataException("Incorrect data length");
             return new Subscriber
             {
                 Id = int.Parse(values[0]),
