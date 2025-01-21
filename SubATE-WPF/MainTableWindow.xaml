@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Абоненты АТМ" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -16,29 +16,37 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
-            <MenuItem Header="File">
-                <MenuItem Header="Open" Click="Open_OnClick"/>
-                <MenuItem Header="Save" Click="Save_OnClick"/>
-                <MenuItem Header="Exit" Click="Exit_OnClick"/>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" Click="Open_OnClick"/>
+                <MenuItem Header="Сохранить" Click="Save_OnClick"/>
+                <MenuItem Header="Выход" Click="Exit_OnClick"/>
             </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Add row" Click="AddRow_OnClick"/>
-                <MenuItem Header="Edit row" Click="EditRow_OnClick"/>
-                <MenuItem Header="Delete row" Click="DeleteRow_OnClick"/>
+            <MenuItem Header="Правка">
+                <MenuItem Header="Добавить строку" Click="AddRow_OnClick"/>
+                <MenuItem Header="Редактировать строку" Click="EditRow_OnClick"/>
+                <MenuItem Header="Удалить строку" Click="DeleteRow_OnClick"/>
             </MenuItem>
-            <MenuItem Header="About" Click="About_OnClick"/>
+            <MenuItem Header="О программе" Click="About_OnClick"/>
         </Menu>
-        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Name="SubscribersDataGrid" AutoGenerateColumns="True" 
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="SubscribersDataGrid" AutoGenerateColumns="False" 
                   ItemsSource="{Binding SubscribersTable}" IsReadOnly="True" FontSize="24">
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Add Row" Click="AddRow_OnClick"/>
-                    <MenuItem Header="Edit Row" Click="EditRow_OnClick"/>
-                    <MenuItem Header="Delete Row" Click="DeleteRow_OnClick"/>
+                    <MenuItem Header="Добавить строку" Click="AddRow_OnClick"/>
+                    <MenuItem Header="Редактировать строку" Click="EditRow_OnClick"/>
+                    <MenuItem Header="Удалить строку" Click="DeleteRow_OnClick"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="Auto"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="Auto"/>
+                <DataGridCheckBoxColumn Header="Премиум" Binding="{Binding IsPremium}" Width="Auto"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="Auto"/>
+                <DataGridTextColumn Header="Дата регистрации" Binding="{Binding RegistrationDate}" Width="Auto"/>
+            </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="2" Grid.Column="0" Content="Up" Click="UpTable_OnClick"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Down" Click="DownTable_OnClick"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="Вверх" Click="UpTable_OnClick"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Вниз" Click="DownTable_OnClick"/>
     </Grid>
 </Window>

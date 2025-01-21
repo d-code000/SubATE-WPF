@@ -26,7 +26,7 @@ public class Subscriber
         Name = "None";
         Phone = "+7(000)111-22-33";
         IsPremium = false;
-        Type = SubscriberType.Legal;
+        Type = SubscriberType.Юридическое;
         RegistrationDate = DateOnly.FromDateTime(DateTime.Today);
     }
 }

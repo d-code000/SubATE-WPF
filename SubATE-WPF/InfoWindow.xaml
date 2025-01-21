@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="InfoWindow" Height="400" Width="400">
+        Title="О программе" Height="400" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,10 +16,10 @@
                    TextWrapping="Wrap"
                    TextAlignment="Center"
                    Margin="10">
-            SubATE is a program for creating and managing tables of subscribers of an automatic telephone stations (ATS). The application offers a user-friendly interface for working with contacts, allows you to quickly add, edit and search data, providing optimization and simplification of management subscriber records.
+            SubATE — это программа для создания и управления таблицами подписчиков автоматических телефонных станций (АТС). Приложение предлагает удобный интерфейс для работы с контактами, позволяет быстро добавлять, редактировать и искать данные, обеспечивая оптимизацию и упрощение управления записями подписчиков.
         </TextBlock>
         <TextBlock Grid.Row="2" Margin="3">
-            The program was developed by 
+            Программа была разработана 
             <Hyperlink NavigateUri="https://github.com/d-code000/d-code000" 
                        RequestNavigate="Hyperlink_RequestNavigate">
                 d_code000

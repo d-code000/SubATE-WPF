@@ -2,8 +2,8 @@
 
 public enum SubscriberType
 {
-    Natural,
-    Legal
+    Физическое,
+    Юридическое
 }
 
 public static class SubscriberTypeExtensions

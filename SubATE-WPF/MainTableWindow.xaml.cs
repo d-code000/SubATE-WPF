@@ -22,7 +22,7 @@ public partial class MainTableWindow
     private void AddRow_OnClick(object sender, RoutedEventArgs e)
     {
         var newSubscriber = new Subscriber();
-        var subscriberFormWindow = new SubscriberFormWindow("Add", new SubscriberViewModel(newSubscriber));
+        var subscriberFormWindow = new SubscriberFormWindow("Добавить", new SubscriberViewModel(newSubscriber));
         if (subscriberFormWindow.ShowDialog() == true)
         {
             _viewModel.SubscribersTable.Add(newSubscriber);
@@ -34,7 +34,7 @@ public partial class MainTableWindow
         var subscriber = GetSelectedSubscriber();
         if (subscriber == null) return;
 
-        var subscriberFormWindow = new SubscriberFormWindow("Edit", new SubscriberViewModel(subscriber));
+        var subscriberFormWindow = new SubscriberFormWindow("Редактировать", new SubscriberViewModel(subscriber));
         if (subscriberFormWindow.ShowDialog() == true)
         {
             SubscribersDataGrid.Items.Refresh();
@@ -46,14 +46,14 @@ public partial class MainTableWindow
         var subscriber = (Subscriber) SubscribersDataGrid.SelectedItem;
         if (subscriber == null)
         {
-            MessageBox.Show("Please select a row to edit.");
+            MessageBox.Show("Пожалуйста, выберите строку для редактирования.");
         }
         return subscriber;
     }
 
     private void Open_OnClick(object sender, RoutedEventArgs e)
     {
-        var openFileDialog = CreateFileDialog("Open Subscriber Data");
+        var openFileDialog = CreateFileDialog("Открыть данные абонентов");
         if (openFileDialog.ShowDialog() == true)
         {
             try
@@ -65,15 +65,15 @@ public partial class MainTableWindow
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show($"File not found: {ex.Message}");
+                MessageBox.Show($"Файл не найден: {ex.Message}");
             }
             catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show($"Access error: {ex.Message}");
+                MessageBox.Show($"Ошибка доступа: {ex.Message}");
             }
             catch (IOException ex)
             {
-                MessageBox.Show($"I/O error: {ex.Message}");
+                MessageBox.Show($"Ошибка ввода-вывода: {ex.Message}");
             }
         }
     }
@@ -82,7 +82,7 @@ public partial class MainTableWindow
     {
         return new Microsoft.Win32.OpenFileDialog
         {
-            Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*",
+            Filter = "CSV файлы (*.csv)|*.csv|Все файлы (*.*)|*.*",
             Title = title
         };
     }
@@ -98,7 +98,7 @@ public partial class MainTableWindow
                 .Take(LinesPerPage + 1)
                 .ToArray();
 
-            foreach (var line in lines.Skip(1)) // Skip header line
+            foreach (var line in lines.Skip(1)) // Пропускаем строку заголовка
             {
                 var subscriber = ParseSubscriber(line);
                 if (subscriber != null)
@@ -109,7 +109,7 @@ public partial class MainTableWindow
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error reading file: {ex.Message}");
+            MessageBox.Show($"Ошибка при чтении файла: {ex.Message}");
         }
     }
 
@@ -118,27 +118,27 @@ public partial class MainTableWindow
         var values = line.Split(',');
         try
         {
-            if (values.Length != 6) throw new DataException("Incorrect data length");
+            if (values.Length != 6) throw new DataException("Неверная длина данных");
             return new Subscriber
             {
                 Id = int.Parse(values[0]),
                 Name = values[1],
                 Phone = values[2],
                 IsPremium = bool.Parse(values[3]),
-                Type = values[4] == "Legal" ? SubscriberType.Legal : SubscriberType.Natural,
+                Type = values[4] == "Юридическое" ? SubscriberType.Юридическое : SubscriberType.Физическое,
                 RegistrationDate = DateOnly.Parse(values[5])
             };
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error parsing subscriber data: {ex.Message}");
+            MessageBox.Show($"Ошибка при разборе данных абонента: {ex.Message}");
             return null;
         }
     }
 
     private void Save_OnClick(object sender, RoutedEventArgs e)
     {
-        var saveFileDialog = CreateFileDialog("Save Subscriber Data");
+        var saveFileDialog = CreateFileDialog("Сохранить данные абонентов");
         if (saveFileDialog.ShowDialog() == true)
         {
             try
@@ -147,15 +147,15 @@ public partial class MainTableWindow
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show($"File not found: {ex.Message}");
+                MessageBox.Show($"Файл не найден: {ex.Message}");
             }
             catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show($"Access error: {ex.Message}");
+                MessageBox.Show($"Ошибка доступа: {ex.Message}");
             }
             catch (IOException ex)
             {
-                MessageBox.Show($"I/O error: {ex.Message}");
+                MessageBox.Show($"Ошибка ввода-вывода: {ex.Message}");
             }
         }
     }
@@ -164,7 +164,7 @@ public partial class MainTableWindow
     {
         using (var writer = new StreamWriter(filePath))
         {
-            var header = "Id,Name,Phone,IsPremium,Type,RegistrationDate";
+            var header = "Id,Имя,Телефон,Премиум,Тип,Дата регистрации";
             writer.WriteLine(header);
 
             var stringBuilder = new StringBuilder();
@@ -185,8 +185,8 @@ public partial class MainTableWindow
     private void Exit_OnClick(object sender, RoutedEventArgs e)
     {
         var result = MessageBox.Show(
-            "Are you sure you want to exit?", 
-            "Exit", 
+            "Вы уверены, что хотите выйти?", 
+            "Выход", 
             MessageBoxButton.YesNo, 
             MessageBoxImage.Question);
         if (result == MessageBoxResult.Yes)

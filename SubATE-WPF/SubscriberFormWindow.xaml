@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="SubscriberForm" Height="450" Width="400">
+        Title="Форма подписчика" Height="450" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -23,24 +23,24 @@
         <Label Grid.Row="0" Grid.Column="0" Content="ID" Margin="10"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
         
-        <Label Grid.Row="1" Grid.Column="0" Content="Name" Margin="10"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Имя" Margin="10"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
         
-        <Label Grid.Row="2" Grid.Column="0" Content="Phone" Margin="10"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Телефон" Margin="10"/>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Phone, UpdateSourceTrigger=LostFocus}" Margin="10"/>
         
-        <Label Grid.Row="3" Grid.Column="0" Content="Is premium" Margin="10"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Премиум" Margin="10"/>
         <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsPremium, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
         
-        <Label Grid.Row="4" Grid.Column="0" Content="Type" Margin="10"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Тип" Margin="10"/>
         <ComboBox Grid.Row="4" Grid.Column="1" 
                   ItemsSource="{Binding SubscriberTypes}" 
                   SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
                   Margin="10"/>
         
-        <Label Grid.Row="5" Grid.Column="0" Content="Registration Date" Margin="10"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Дата регистрации" Margin="10"/>
         <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding RegistrationDate, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
         
-        <Button Grid.Row="6" Grid.Column="1" Content="Save" Click="SaveButton_Click" Margin="10"/>
+        <Button Grid.Row="6" Grid.Column="1" Content="Сохранить" Click="SaveButton_Click" Margin="10"/>
     </Grid>
 </Window>
