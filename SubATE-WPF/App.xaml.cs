@@ -1,6 +1,5 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using DotNetEnv;
 
 namespace SubATE_WPF;
 
@@ -9,4 +8,8 @@ namespace SubATE_WPF;
 /// </summary>
 public partial class App : Application
 {
+    private void Application_Startup(object sender, StartupEventArgs e)
+    {
+        Env.Load();
+    }
 }

@@ -19,10 +19,17 @@
       <Resource Include="assets\two-color.png" />
       <None Remove="assets\light.png" />
       <Resource Include="assets\light.png" />
+      <None Remove=".env" />
+      <EmbeddedResource Include=".env" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Database\Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="dotenv.net" Version="3.2.1" />
+      <PackageReference Include="DotNetEnv" Version="3.1.1" />
     </ItemGroup>
 
 </Project>

@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using Database;
+using DotNetEnv;
 
 namespace SubATE_WPF;
 
@@ -18,10 +20,17 @@ public partial class MainTableWindow
 
     public MainTableWindow()
     {
-        InitializeComponent();
         DataContext = _viewModel;
-        _connection = new Connection();
+        _connection = new Connection(
+            "Server=localhost,1433;" +
+            "Database=БазаАбонентов;" + 
+            "User " +
+            $"Id={Environment.GetEnvironmentVariable("DB_USER")};" +
+            $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
+            "Encrypt=false;TrustServerCertificate=true;\n"
+        );
         _viewModel.SubscribersTable = new ObservableCollection<Subscriber>(_connection.GetSubscribersFromDataTable());
+        InitializeComponent();
     }
 
     private void AddRow_OnClick(object sender, RoutedEventArgs e)

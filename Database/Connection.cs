@@ -7,20 +7,16 @@ namespace Database;
 public class Connection
 {
     private DataTable _subscriberTable = new();
-    private const string ConnectionString = 
-        "Server=localhost,1433;" +
-        "Database=БазаАбонентов;" +
-        "User Id=SA;Password=nqM9Ykigd9e3cJnOpNhkJq54TmedyuoO;" +
-        "Encrypt=false;TrustServerCertificate=true;\n";
-
-    public Connection()
+    private readonly string _connectionString;
+    public Connection(string connectionString)
     {
+        _connectionString = connectionString;
         CreateTable();
     }
     
-    public static void NewConnection(Action<SqlConnection> dbQuery)
+    public void NewConnection(Action<SqlConnection> dbQuery)
     {
-        using (var connection = new SqlConnection(ConnectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
             try
