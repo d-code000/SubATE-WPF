@@ -26,6 +26,10 @@
                 <MenuItem Header="Редактировать строку" Click="EditRow_OnClick"/>
                 <MenuItem Header="Удалить строку" Click="DeleteRow_OnClick"/>
             </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem Header="Обновить таблицу" Click="UpdateFromDatabase_OnClick"/>
+                <MenuItem Header="Фильтр по имени" Click="GetByName_OnClick"/>
+            </MenuItem>
             <MenuItem Header="О программе" Click="About_OnClick"/>
         </Menu>
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="SubscribersDataGrid" AutoGenerateColumns="False" 

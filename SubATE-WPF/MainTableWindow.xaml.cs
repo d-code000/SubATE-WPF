@@ -48,10 +48,14 @@ public partial class MainTableWindow
         }
     }
 
-    private void UpdateViewModel()
+    private void UpdateViewModel(List<Subscriber>? list = null)
     {
+        if (list is null)
+        {
+            list = _connection.GetSubscribersFromDataTable();
+        }
         _viewModel.SubscribersTable.Clear();
-        foreach (var subscriber in _connection.GetSubscribersFromDataTable())
+        foreach (var subscriber in list)
         {
             _viewModel.SubscribersTable.Add(subscriber);
         }
@@ -241,5 +245,20 @@ public partial class MainTableWindow
             _currentLineIndex += LinesPerPage;
             LoadSubscribers();
         }
+    }
+
+    private void GetByName_OnClick(object sender, RoutedEventArgs e)
+    {
+        var newSubscriber = new Subscriber();
+        var filter = new FilterWindow(new SubscriberViewModel(newSubscriber));
+        if (filter.ShowDialog() == true)
+        {
+            UpdateViewModel(_connection.GetByName(newSubscriber.Name));
+        }
+    }
+
+    private void UpdateFromDatabase_OnClick(object sender, RoutedEventArgs e)
+    {
+        UpdateViewModel();
     }
 }

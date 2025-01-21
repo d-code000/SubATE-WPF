@@ -1,16 +1,17 @@
 ﻿using System.Data;
 using SubATE_WPF;
+using Microsoft.Data.SqlClient;
 
 namespace Database;
-using System.Data.SqlClient;
 
 public class Connection
 {
-    private readonly DataTable _subscriberTable = new();
+    private DataTable _subscriberTable = new();
     private const string ConnectionString = 
         "Server=localhost,1433;" +
         "Database=БазаАбонентов;" +
-        "User Id=SA;Password=nqM9Ykigd9e3cJnOpNhkJq54TmedyuoO;\n";
+        "User Id=SA;Password=nqM9Ykigd9e3cJnOpNhkJq54TmedyuoO;" +
+        "Encrypt=false;TrustServerCertificate=true;\n";
 
     public Connection()
     {
@@ -140,8 +141,9 @@ public class Connection
             string query = "SELECT * FROM Абонент";
             using (var adapter = new SqlDataAdapter(query, connection))
             {
-                _subscriberTable.Clear();
-                adapter.Fill(_subscriberTable);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet, "Абонент");
+                _subscriberTable = dataSet.Tables["Абонент"]!;
             }
         });
     }
@@ -149,8 +151,13 @@ public class Connection
     public List<Subscriber> GetSubscribersFromDataTable()
     {
         LoadSubscribers();
+        return DataTableToList(_subscriberTable);
+    }
+    
+    private List<Subscriber> DataTableToList(DataTable dataTable)
+    {
         var subscribers = new List<Subscriber>();
-        foreach (DataRow row in _subscriberTable.Rows)
+        foreach (DataRow row in dataTable.Rows)
         {
             subscribers.Add(new Subscriber
             {
@@ -163,6 +170,24 @@ public class Connection
             });
         }
 
+        return subscribers;
+    }
+
+    public List<Subscriber> GetByName(string name)
+    {
+        var subscribers = new List<Subscriber>();
+        NewConnection(connection =>
+        {
+            using (var adapter = new SqlDataAdapter(
+                       "SELECT * FROM Абонент WHERE Имя like '%' + @Имя + '%'",
+                       connection))
+            {
+                adapter.SelectCommand.Parameters.AddWithValue("@Имя", name);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                subscribers = DataTableToList(dataTable);
+            }
+        });
         return subscribers;
     }
 
