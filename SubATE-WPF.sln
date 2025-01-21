@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubATE-WPF", "SubATE-WPF\Su
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Script", "Script\Script.csproj", "{24F6725C-DF70-4B64-B48A-852850D53E8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{566F85F2-C119-4143-8E02-DFE4FDEAEB54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{24F6725C-DF70-4B64-B48A-852850D53E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F6725C-DF70-4B64-B48A-852850D53E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F6725C-DF70-4B64-B48A-852850D53E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566F85F2-C119-4143-8E02-DFE4FDEAEB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566F85F2-C119-4143-8E02-DFE4FDEAEB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566F85F2-C119-4143-8E02-DFE4FDEAEB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566F85F2-C119-4143-8E02-DFE4FDEAEB54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

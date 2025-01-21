@@ -1,7 +1,9 @@
-﻿using System.Data;
+﻿using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Text;
 using System.Windows;
+using Database;
 
 namespace SubATE_WPF;
 
@@ -9,6 +11,7 @@ public partial class MainTableWindow
 {
     private readonly SubscriberTableViewModel _viewModel = new();
     private string _currentFilePath = string.Empty;
+    private Connection _connection;
     private int _currentLineIndex;
     private int _fileLinesCount;
     private const int LinesPerPage = 1000;
@@ -17,6 +20,8 @@ public partial class MainTableWindow
     {
         InitializeComponent();
         DataContext = _viewModel;
+        _connection = new Connection();
+        _viewModel.SubscribersTable = new ObservableCollection<Subscriber>(_connection.GetSubscribersFromDataTable());
     }
 
     private void AddRow_OnClick(object sender, RoutedEventArgs e)
@@ -25,7 +30,8 @@ public partial class MainTableWindow
         var subscriberFormWindow = new SubscriberFormWindow("Добавить", new SubscriberViewModel(newSubscriber));
         if (subscriberFormWindow.ShowDialog() == true)
         {
-            _viewModel.SubscribersTable.Add(newSubscriber);
+            _connection.AddSubscriber(newSubscriber);
+            UpdateViewModel();
         }
     }
 
@@ -37,7 +43,17 @@ public partial class MainTableWindow
         var subscriberFormWindow = new SubscriberFormWindow("Редактировать", new SubscriberViewModel(subscriber));
         if (subscriberFormWindow.ShowDialog() == true)
         {
-            SubscribersDataGrid.Items.Refresh();
+            _connection.UpdateSubscriber(subscriber);
+            UpdateViewModel();
+        }
+    }
+
+    private void UpdateViewModel()
+    {
+        _viewModel.SubscribersTable.Clear();
+        foreach (var subscriber in _connection.GetSubscribersFromDataTable())
+        {
+            _viewModel.SubscribersTable.Add(subscriber);
         }
     }
 
@@ -98,7 +114,7 @@ public partial class MainTableWindow
                 .Take(LinesPerPage + 1)
                 .ToArray();
 
-            foreach (var line in lines.Skip(1)) // Пропускаем строку заголовка
+            foreach (var line in lines.Skip(1))
             {
                 var subscriber = ParseSubscriber(line);
                 if (subscriber != null)
@@ -200,7 +216,8 @@ public partial class MainTableWindow
         var subscriber = GetSelectedSubscriber();
         if (subscriber != null)
         {
-            _viewModel.SubscribersTable.Remove(subscriber);
+            _connection.DeleteSubscriber(subscriber.Id);
+            UpdateViewModel();
         }
     }
 

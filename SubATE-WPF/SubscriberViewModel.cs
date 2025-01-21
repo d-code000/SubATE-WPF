@@ -4,22 +4,6 @@ namespace SubATE_WPF;
 
 public sealed class SubscriberViewModel(Subscriber subscriber) : INotifyPropertyChanged
 {
-    public string Id
-    {
-        get => $"{subscriber.Id}";
-        set
-        {
-            if (int.TryParse(value, out var id))
-            {
-                if (id > 0)
-                {
-                    subscriber.Id = id;
-                    OnPropertyChanged(nameof(Id));
-                }
-            }
-        }
-    }
-    
     public string Name
     {
         get => subscriber.Name;
